@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Facpya_Proyecto.view"
+             xmlns:rol="clr-namespace:Facpya_Proyecto"
+             x:Class="Facpya_Proyecto.view.Inicio"
+             BackgroundColor="#3C252D"
+             x:Name="EdificioSalonesXAML">
+    <ContentPage.Resources>
+        <rol:RolToVisibilityConverter x:Key="RolToVisibilityConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Para el botón de cerrar sesión -->
+                <RowDefinition Height="*"/>
+                <!-- Para el contenido existente -->
+            </Grid.RowDefinitions>
+
+            <ImageButton    Source="cerrar.png"
+                            Clicked="OnLogoutButtonClicked"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            Margin="10"
+                            BackgroundColor="Transparent"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            Padding="10"
+                            Aspect="AspectFit"
+                            Grid.Row="0"/>
+
+                <StackLayout Grid.Row="1"   HorizontalOptions="Center" 
+                         VerticalOptions="Start">
+            <Image Source="/drawable/Logo.jpg" 
+                       Grid.Row="0" 
+                       Aspect="AspectFit" 
+                       Margin="0,10,0,0"/>
+            <StackLayout VerticalOptions="Center">
+                <Label Text="ÁREAS FACPYA" 
+                       HorizontalOptions="CenterAndExpand"
+                           TextColor="White" 
+                           FontSize="27" 
+                           FontAttributes="Bold" 
+                           FontFamily="Arial"></Label>
+                <Label Text="{Binding NombreUsuario, StringFormat='Bienvenido {0}', Source={RelativeSource AncestorType={x:Type local:Inicio}}}"
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="White"
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       FontFamily="Arial" />
+            </StackLayout>
+            <ScrollView>
+                <FlexLayout BindableLayout.ItemsSource="{Binding ListaDeEdificios}" 
+                Direction="Row" Wrap="Wrap" 
+                JustifyContent="SpaceAround" AlignItems="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame WidthRequest="190" HeightRequest="140" 
+                       CornerRadius="10" Margin="0,10,0,0" Padding="0">
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Image Source="{Binding ImageUrl}"  
+                                           
+                                           Aspect="AspectFill"
+                                           VerticalOptions="FillAndExpand" 
+                                           HorizontalOptions="FillAndExpand">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer   Command="{Binding BindingContext.ImageTappedCommand, 
+                                                                    Source={x:Reference EdificioSalonesXAML}}"
+                                                                    CommandParameter="{Binding .}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label  Text="{Binding Name}" 
+                                            VerticalOptions="Center" HorizontalOptions="Center" 
+                                            TextColor="White" BackgroundColor="#c0808080"
+                                            FontSize="20"/>
+                                    <StackLayout  Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Start">
+                                        <Button Text="Actualizar"
+                                                WidthRequest="25"
+                                                HeightRequest="25"
+                                                Command="{Binding BindingContext.UpdateCommand, Source={x:Reference EdificioSalonesXAML}}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="Blue"
+                                                TextColor="White"
+                                                FontSize="Micro"
+                                                IsVisible="{Binding Source={x:Reference EdificioSalonesXAML}, Path=EsAdmin}"/>
+                                        <Button Text="x"
+                                                WidthRequest="25"
+                                                x:Name="adminButton"
+                                                HeightRequest="25"
+                                                Command="{Binding BindingContext.DeleteCommand, Source={x:Reference EdificioSalonesXAML}}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="Red"
+                                                TextColor="White"
+                                                FontSize="Micro"
+                                                IsVisible="{Binding Source={x:Reference EdificioSalonesXAML}, Path=EsAdmin}"/>
+
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </ScrollView>
+            <Button Text="Agregar imagen"
+                    x:Name="addButton"
+                    TextColor="White"
+                    Clicked="OnAddImageButtonClicked" 
+                    BackgroundColor="Black"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    Margin="55,0,55,0"
+                    />
+        </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

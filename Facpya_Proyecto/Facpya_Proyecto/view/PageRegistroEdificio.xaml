@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+             x:Class="Facpya_Proyecto.view.PageRegistroEdificio"
+             xmlns:local="clr-namespace:Facpya_Proyecto"
+             BackgroundColor="#9D0924">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:VistaPrevia x:Key="VistaPrevia" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout    HorizontalOptions="Center" 
+                         VerticalOptions="Start">
+            <Image Source="/drawable/Logo.jpg" 
+                       Grid.Row="0" 
+                       Aspect="AspectFit" 
+                       Margin="0,10,0,0"/>
+            <StackLayout VerticalOptions="Center">
+                <Label Text="REGISTRO DE EDIFICIO/AREA" 
+                       HorizontalOptions="CenterAndExpand"
+                           TextColor="White" 
+                           FontSize="25" 
+                           FontAttributes="Bold" 
+                           FontFamily="Arial"></Label>
+                <Entry Placeholder="Nombre del edificio" Text="{Binding Edificio.Name}" PlaceholderColor="White" TextColor="White" Margin="50,0,50,0"/>
+            </StackLayout>
+
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+
+                
+
+                <Frame Grid.Row="0" BorderColor="Black" CornerRadius="10" Padding="0">
+                    <StackLayout>
+                        <Label  Text="Agregar Edificio" 
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center" 
+                                IsVisible="{Binding IsBuildingImageVisible, Converter={StaticResource VistaPrevia}}"/>
+                        <Image  x:Name="buildingImage"
+                                Source="{Binding BuildingImageSource}"
+                                Aspect="AspectFill"
+                                HeightRequest="200"
+                                WidthRequest="400"
+                                IsVisible="{Binding IsBuildingImageVisible}" />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickImageCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Frame Grid.Column="0" BorderColor="Black" CornerRadius="10" Padding="0">
+                        <StackLayout>
+                            <Label Text="Agregar Croquis" HorizontalOptions="Center" VerticalOptions="Center"
+                                   IsVisible="{Binding IsSketchImageVisible, Converter={StaticResource VistaPrevia}}"/>
+                            <Image x:Name="sketchImage"
+                                   Source="{Binding SketchImageSource}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="150"
+                                   WidthRequest="150"
+                                   IsVisible="{Binding IsSketchImageVisible}"/>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PickSketchCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+
+                    <Frame Grid.Column="1" BorderColor="Black" CornerRadius="10" Padding="0">
+                        <StackLayout>
+                            <Label  Text="Agregar Video" HorizontalOptions="Center" VerticalOptions="Center" 
+                                    IsVisible="{Binding IsVideoNotVisible}"/>
+                            <xct:MediaElement   x:Name="videoPlayer" 
+                                                Source="{Binding VideoSource}"
+                                                Aspect="AspectFit"
+                                                HeightRequest="150"
+                                                ShowsPlaybackControls="True"
+                                                AutoPlay="False"
+                                                IsVisible="{Binding IsVideoVisible}" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PickVideoCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+            </Grid>
+
+            <Button Text="Agregar edificio"
+                    Command="{Binding SaveEdificioCommand}" 
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    Margin="55,0,55,0"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Facpya_Proyecto.view.Registro"
+             BackgroundColor="#9D0924">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Start">
+                <Image Source="/drawable/Logo.jpg" 
+                       Grid.Row="0" 
+                       Aspect="AspectFit" 
+                       Margin="0,10,0,0"/>
+                <StackLayout VerticalOptions="Center">
+                    <Label Text="ÁREAS" 
+                           TextColor="White" 
+                           FontSize="50" 
+                           FontAttributes="Bold" 
+                           FontFamily="Arial"></Label>
+                    <Label Text="FACPYA" TextColor="White" 
+                           FontSize="50" FontAttributes="Bold" 
+                           FontFamily="Arial" 
+                           Margin="30,-25,0,0"></Label>
+                </StackLayout>
+            </StackLayout>
+
+            <Frame Padding="20"
+                   CornerRadius="10"
+                   BackgroundColor="White"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="20,-150,20,0">
+
+                <StackLayout>
+
+                    <Label Text="Crear Una Cuenta"
+                           FontSize="Large"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,20" />
+
+                    <Entry Placeholder="Nombre"  x:Name="TxtName" />
+
+                    <Entry Placeholder="Correo Electrónico" x:Name="TxtEmail" />
+
+                    <Entry Placeholder="Contraseña" x:Name="TxtPassword"
+                           IsPassword="True" />
+
+                    <Entry Placeholder="Confirmar Contraseña" x:Name="TxtConfirmPass"
+                           IsPassword="True" />
+
+                    <Button Text="Registrar"
+                            TextColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="#3C252D"
+                            CornerRadius="20"
+                            Margin="70,0,70,0"
+                            Clicked="ButtonRegistrar_Clicked"
+                            />
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Facpya_Proyecto.view.Login">
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="650" />
+            </Grid.RowDefinitions>
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="#3C252D" />
+                    <GradientStop Offset="0.4" Color="#3C252D" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Start">
+                <Image Source="/drawable/Logo.jpg" 
+                       Grid.Row="0" 
+                       Aspect="AspectFit" 
+                       Margin="0,10,0,0"/>
+                <StackLayout VerticalOptions="Center">
+                    <Label Text="ÁREAS" 
+                           TextColor="White" 
+                           FontSize="50" 
+                           FontAttributes="Bold" 
+                           FontFamily="Arial"></Label>
+                    <Label Text="FACPYA" TextColor="White" 
+                           FontSize="50" FontAttributes="Bold" 
+                           FontFamily="Arial" 
+                           Margin="30,-25,0,0"></Label>
+                </StackLayout>
+            </StackLayout>
+            <Image Source="/drawable/fondo.jpg" Grid.Row="1" Aspect="AspectFill" />
+        </Grid>
+
+        <StackLayout Padding="0">
+            <StackLayout Margin="20,110,20,0">
+                <Frame HasShadow="False" 
+                       BackgroundColor="#902e2b2c" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="FillAndExpand" 
+                       HeightRequest="450">
+                    <StackLayout Margin="0,50,0,0">
+                        <StackLayout>
+                            <Frame BackgroundColor="White" 
+                                   BorderColor="White" 
+                                   Padding="0" Margin="0" 
+                                   CornerRadius="50" 
+                                   HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry Placeholder="Correo"
+                                           x:Name="TxtCorreo"
+                                           TextColor="Black" 
+                                           HorizontalOptions="FillAndExpand" 
+                                           Margin="15,0,15,0"></Entry>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="White" 
+                                   BorderColor="White" 
+                                   Padding="0" 
+                                   Margin="0,20,0,0" 
+                                   CornerRadius="50" 
+                                   HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry Placeholder="Contraseña" 
+                                           x:Name="TxtPassword"
+                                           IsPassword="True" 
+                                           TextColor="Black" 
+                                           HorizontalOptions="FillAndExpand" 
+                                           Margin="15,0,15,0"></Entry>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox IsChecked="False" 
+                                      Color="White"></CheckBox>
+                            <Label Text="Recuerdame" 
+                                   TextColor="White" 
+                                   HorizontalTextAlignment="Start" 
+                                   VerticalTextAlignment="Center"></Label>
+                            <Label Text="¿Olvidaste la Contraseña?" TextColor="White" 
+                                   HorizontalTextAlignment="End" 
+                                   VerticalTextAlignment="Center" 
+                                   HorizontalOptions="EndAndExpand" 
+                                   FontAttributes="Bold" 
+                                   TextDecorations="Underline">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Label_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Frame BackgroundColor="Transparent" 
+                                   BorderColor="Black" 
+                                   Padding="0" 
+                                   Margin="0" 
+                                   CornerRadius="50" 
+                                   HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Ingresar" 
+                                            FontFamily="Arial" 
+                                            BackgroundColor="#909D0924" 
+                                            TextColor="White" 
+                                            FontAttributes="Bold" 
+                                            HorizontalOptions="FillAndExpand" 
+                                            CornerRadius="30"
+                                            Clicked="ingresarButton_Clicked"></Button >
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center">
+
+                            <Label Text="¿No tienes cuenta?" 
+                                   TextColor="White"></Label>
+                            <Button x:Name="registroButton"
+                                    Text="Regístrate"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="Transparent"
+                                    TextColor="White"
+                                    Margin="0,-15,0,0"
+                                    FontAttributes="Bold"
+                                    TextTransform="None"
+                                    Clicked="registroButton_Clicked" />
+                        </StackLayout>
+
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+
+        </StackLayout>
+
+    </Grid>
+
+
+</ContentPage>

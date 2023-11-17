@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+             x:Class="Facpya_Proyecto.view.PageEdificioSalones"
+             BackgroundColor="#9D0924"
+             >
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalOptions="Center" VerticalOptions="Start">
+            <StackLayout VerticalOptions="Center">
+                <Label Text="{Binding Edificio.Name}" 
+                       HorizontalOptions="CenterAndExpand"
+                           TextColor="White" 
+                           FontSize="25" 
+                           FontAttributes="Bold" 
+                           FontFamily="Arial"></Label>
+            </StackLayout>
+
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <Frame Grid.Row="0" BackgroundColor="Transparent" Padding="0">
+                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image x:Name="buildingImage"
+                               Source="{Binding Edificio.ImageUrl}"
+                               Aspect="AspectFill"
+                               HeightRequest="200"
+                               WidthRequest="400" />
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenPopupCommand}" CommandParameter="{Binding Edificio.ImageUrl}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Grid Grid.Row="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Grid Grid.Column="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="17"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+
+                            <Label Grid.Row="0"
+                               Text="CROQUIS"
+
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="White" 
+                               />
+
+                            <Frame Grid.Row="1" BackgroundColor="Transparent" Padding="0">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image x:Name="sketchImage"
+                                       Source="{Binding Edificio.SketchImageUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="170"
+                                       WidthRequest="150" 
+                                           Margin="0,11,0,0"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenSketchPopupCommand}" CommandParameter="{Binding Edificio.SketchImageUrl}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                               Text="VIDEO"
+                               HorizontalOptions="Center"
+                               VerticalOptions="End"
+                               TextColor="White" />
+
+                            <Frame Grid.Row="1" BackgroundColor="Transparent" Padding="0">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <xct:MediaElement   x:Name="videoPlayer"
+                                                        Source="{Binding Edificio.VideoUrl}"
+                                                        Aspect="AspectFit"
+                                                        HeightRequest="250"
+                                                        WidthRequest="250"
+                                                        ShowsPlaybackControls="True"
+                                                        AutoPlay="False" />
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenVideoPopupCommand}" CommandParameter="{Binding Edificio.VideoUrl}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+            <ContentView x:Name="ImagePopupView" IsVisible="{Binding IsPopupVisible}" BackgroundColor="#C0808080" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="{Binding SelectedImageUrl}" Aspect="AspectFill" WidthRequest="400" HeightRequest="300"/>
+                    <Button Text="Cerrar" Command="{Binding ClosePopupCommand}"/>
+                </StackLayout>
+            </ContentView>
+            <ContentView x:Name="sketchImagePopupView" IsVisible="{Binding IsSketchPopupVisible}" BackgroundColor="#C0808080" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="{Binding SelectedSketchImageUrl}" Aspect="AspectFill" WidthRequest="300" HeightRequest="400"/>
+                    <Button Text="Cerrar" Command="{Binding CloseSketchPopupCommand}"/>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView x:Name="videoPopupView" IsVisible="{Binding IsVideoPopupVisible}" BackgroundColor="#C0808080" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <xct:MediaElement Source="{Binding SelectedVideoUrl}"
+                              Aspect="AspectFit"
+                              WidthRequest="400" HeightRequest="300"
+                              ShowsPlaybackControls="True"
+                              AutoPlay="False" />
+                    <Button Text="Cerrar" Command="{Binding CloseVideoPopupCommand}"/>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
